@@ -1,9 +1,22 @@
 console.log("hello world");
 
-let N = 16;
 
-let isMouseDown = false;
 
+function startGrid() {
+  let N = prompt("Enter the grid size (1-100)", 16);
+
+  N = Number(N); // convert string to number
+
+  if (isNaN(N) || N < 1 || N > 100) {
+    alert("Please enter a number from 1 to 100");
+    startGrid(); // 🔁 RESTART the function
+    return;
+  }
+
+  generateGrid(N); // if valid, continue
+}
+
+startGrid();
 
 //set the movements for the whole body
 
@@ -33,4 +46,14 @@ for (let i = 0; i < N * N; i++) {
   })
 
   container.appendChild(square);
+}
+
+
+function reset() {
+
+  const squares = document.querySelectorAll(".grid-square");
+
+  squares.forEach(square => {
+    square.style.backgroundColor = "white"
+  })
 }
